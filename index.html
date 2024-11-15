@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Click Sparks</title>
+  </head>
+  <body>
+    <script>
+      let container = document.querySelector('body');
+      container.addEventListener('click', function (event) {
+        let spark = document.createElement('div');
+        spark.classList.add('spark');
+        spark.style.top = event.clientY + 'px';
+        spark.style.left = event.clientX + 'px';
+        spark.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
+        container.appendChild(spark);
+
+        for (let i = 0; i < 12; i++) {
+          let span = document.createElement('span');
+          let angle = Math.random() * 360; // Random angle for each span
+          let speed = Math.random() * 2 + 1; // Random speed for each span
+          span.style.transform = `rotate(${angle}deg) translate(0, ${speed}em)`;
+          span.style.animationDelay = Math.random() * 0.2 + 's';
+          spark.appendChild(span);
+        }
+
+        setTimeout(() => spark.remove(), 2000);
+      });
+    </script>
+  </body>
+</html>
